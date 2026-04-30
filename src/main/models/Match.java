@@ -33,7 +33,7 @@ public class Match {
     }
 
     public int getTotalScore() {
-
+        return homeScore + awayScore;
     }
 
     public int getHomeScore() {
