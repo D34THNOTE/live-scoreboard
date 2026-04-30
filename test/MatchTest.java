@@ -45,4 +45,13 @@ public class MatchTest {
         assertEquals(2, match.getHomeScore());
         assertEquals(3, match.getAwayScore());
     }
+
+    @Test
+    void getTotalScore_shouldReturnCorrectSum() {
+        Match match = new Match("Germany", "Spain", 0);
+
+        match.updateScore(4, 5);
+
+        assertEquals(9, match.getTotalScore());
+    }
 }

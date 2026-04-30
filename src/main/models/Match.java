@@ -32,6 +32,10 @@ public class Match {
         this.awayScore = awayScore;
     }
 
+    public int getTotalScore() {
+
+    }
+
     public int getHomeScore() {
         return homeScore;
     }
