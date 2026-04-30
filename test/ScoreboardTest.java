@@ -118,4 +118,12 @@ class ScoreboardTest {
 
         assertThrows(IllegalArgumentException.class, () -> scoreboard.finishMatch(match));
     }
+
+    @Test
+    void updateScore_shouldThrow_whenMatchWasFinished() {
+        Match match = scoreboard.startMatch("Germany", "France");
+        scoreboard.finishMatch(match);
+
+        assertThrows(IllegalArgumentException.class, () -> scoreboard.updateScore(match, 2, 3));
+    }
 }
