@@ -51,6 +51,20 @@ public class Scoreboard {
     }
 
     public String getSummary() {
+        List<Match> sortedMatches = getSortedMatches();
 
+        StringBuilder result = new StringBuilder();
+
+        for(int i = 0; i < sortedMatches.size(); i++) {
+            result.append(i + 1)
+                    .append(". ")
+                    .append(sortedMatches.get(i).toString());
+
+            if(i < sortedMatches.size() - 1) {
+                result.append("\n");
+            }
+        }
+
+        return result.toString();
     }
 }
