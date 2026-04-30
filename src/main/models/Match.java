@@ -23,6 +23,10 @@ public class Match {
         this.awayScore = 0;
     }
 
+    public void updateScore(int homeScore, int awayScore) {
+
+    }
+
     public int getHomeScore() {
         return homeScore;
     }

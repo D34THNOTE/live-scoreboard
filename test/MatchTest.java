@@ -26,4 +26,13 @@ public class MatchTest {
         assertEquals(0, match.getHomeScore());
         assertEquals(0, match.getAwayScore());
     }
+
+    @Test
+    void updateScore_shouldThrow_whenNegativeValues() {
+        Match match = new Match("Germany", "Spain", 0);
+
+        assertThrows(IllegalArgumentException.class, () -> match.updateScore(-1, 0));
+        assertThrows(IllegalArgumentException.class, () -> match.updateScore(0, -1));
+        assertThrows(IllegalArgumentException.class, () -> match.updateScore(-1, -1));
+    }
 }
