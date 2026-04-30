@@ -33,6 +33,10 @@ public class Scoreboard {
     }
 
     public void finishMatch(Match match) {
+        if(match == null || !matches.contains(match)) {
+            throw new IllegalArgumentException("Provided match does not exist");
+        }
+
         matches.remove(match);
     }
 }
