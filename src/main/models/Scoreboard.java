@@ -49,4 +49,8 @@ public class Scoreboard {
                         )
                 ).toList();
     }
+
+    public String getSummary() {
+
+    }
 }

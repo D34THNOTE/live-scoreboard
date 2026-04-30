@@ -211,5 +211,12 @@ class ScoreboardTest {
         assertTrue(sorted.indexOf(match2) < sorted.indexOf(match3));
     }
 
+    @Test
+    void getSummary_shouldReturnCorrectStringForSingleMatch() {
+        Match match = scoreboard.startMatch("Albania", "Bulgaria");
+        scoreboard.updateScore(match, 3, 2);
 
+        String expected = "1. Albania 3 - 2 Bulgaria";
+        assertEquals(expected, scoreboard.getSummary());
+    }
 }
