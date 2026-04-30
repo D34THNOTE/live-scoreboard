@@ -30,4 +30,17 @@ class ScoreboardTest {
         assertEquals(1, matches.size());
         assertTrue(matches.contains(match));
     }
+
+    @Test
+    void startMatch_shouldInitializeZeroScore() {
+        Match match = scoreboard.startMatch("Germany", "France");
+
+        assertEquals(0, match.getHomeScore());
+        assertEquals(0, match.getAwayScore());
+    }
+
+    @Test
+    void startMatch_shouldPropagateException_whenInvalidInput() {
+        assertThrows(IllegalArgumentException.class, () -> scoreboard.startMatch(null, "Away"));
+    }
 }
