@@ -145,4 +145,17 @@ class ScoreboardTest {
         List<Match> sorted = scoreboard.getSortedMatches();
         assertTrue(sorted.isEmpty());
     }
+
+    @Test
+    void getSortedMatches_shouldSortByMostRecent_whenScoresAreEqual() {
+        Match match1 = scoreboard.startMatch("A", "B");
+        Match match2 = scoreboard.startMatch("C", "D");
+
+        scoreboard.updateScore(match1, 2, 2);
+        scoreboard.updateScore(match2, 2, 2);
+
+        List<Match> sorted = scoreboard.getSortedMatches();
+
+        assertTrue(sorted.indexOf(match2) < sorted.indexOf(match1));
+    }
 }
