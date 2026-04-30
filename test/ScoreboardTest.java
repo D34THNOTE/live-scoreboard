@@ -224,4 +224,18 @@ class ScoreboardTest {
     void getSummary_shouldReturnEmptyString() {
         assertEquals("", scoreboard.getSummary());
     }
+
+    @Test
+    void getSummary_shouldReturnCorrectStringForMultipleMatches() {
+        Match match1 = scoreboard.startMatch("Albania", "Bulgaria");
+        Match match2 = scoreboard.startMatch("Croatia", "Denmark");
+        Match match3 = scoreboard.startMatch("Estonia", "France");
+
+        scoreboard.updateScore(match1, 3, 2);
+        scoreboard.updateScore(match2, 4, 1);
+        scoreboard.updateScore(match3, 1, 1);
+
+        String expected = "1. Croatia 4 - 1 Denmark\n2. Albania 3 - 2 Bulgaria\n3. Estonia 1 - 1 France";
+        assertEquals(expected, scoreboard.getSummary());
+    }
 }
