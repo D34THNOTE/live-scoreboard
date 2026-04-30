@@ -64,4 +64,35 @@ class ScoreboardTest {
         assertEquals(1, match.getHomeScore());
         assertEquals(1, match.getAwayScore());
     }
+
+    @Test
+    void updateScore_shouldAllowZeroScores() {
+        Match match = scoreboard.startMatch("Germany", "France");
+
+        scoreboard.updateScore(match, 0, 0);
+
+        assertEquals(0, match.getHomeScore());
+        assertEquals(0, match.getAwayScore());
+    }
+
+    @Test
+    void updateScore_shouldThrow_whenMatchIsNull() {
+        Match match = scoreboard.startMatch("Germany", "France");
+        assertThrows(IllegalArgumentException.class, () -> scoreboard.updateScore(null, 1, 5));
+    }
+
+    @Test
+    void updateScore_shouldThrow_whenMatchNotInScoreboard() {
+        Scoreboard differentScoreboard = new Scoreboard();
+        Match match = differentScoreboard.startMatch("Germany", "France");
+
+        assertThrows(IllegalArgumentException.class, () -> scoreboard.updateScore(match, 1, 5));
+    }
+
+    @Test
+    void updateScore_shouldPropagateException_whenInvalidInput() {
+        Match match = scoreboard.startMatch("Germany", "France");
+
+        assertThrows(IllegalArgumentException.class, () -> scoreboard.updateScore(match, -1, 1));
+    }
 }
