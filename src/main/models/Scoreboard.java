@@ -31,4 +31,8 @@ public class Scoreboard {
 
         match.updateScore(homeScore, awayScore);
     }
+
+    public void finishMatch(Match match) {
+
+    }
 }

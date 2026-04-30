@@ -95,4 +95,13 @@ class ScoreboardTest {
 
         assertThrows(IllegalArgumentException.class, () -> scoreboard.updateScore(match, -1, 1));
     }
+
+    @Test
+    void finishMatch_shouldRemoveMatchCorrectly() {
+        Match match = scoreboard.startMatch("Germany", "France");
+        assertTrue(scoreboard.getMatches().contains(match));
+        scoreboard.finishMatch(match);
+
+        assertFalse(scoreboard.getMatches().contains(match));
+    }
 }
