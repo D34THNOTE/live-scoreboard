@@ -43,4 +43,25 @@ class ScoreboardTest {
     void startMatch_shouldPropagateException_whenInvalidInput() {
         assertThrows(IllegalArgumentException.class, () -> scoreboard.startMatch(null, "Away"));
     }
+
+    @Test
+    void updateScore_shouldUpdateMatchScoresCorrectly() {
+        Match match = scoreboard.startMatch("Germany", "France");
+
+        scoreboard.updateScore(match, 5, 8);
+
+        assertEquals(5, match.getHomeScore());
+        assertEquals(8, match.getAwayScore());
+    }
+
+    @Test
+    void updateScore_shouldOverwritePreviousScore() {
+        Match match = scoreboard.startMatch("Germany", "France");
+
+        scoreboard.updateScore(match, 5, 8);
+        scoreboard.updateScore(match, 1, 1);
+
+        assertEquals(1, match.getHomeScore());
+        assertEquals(1, match.getAwayScore());
+    }
 }

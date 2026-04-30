@@ -23,4 +23,8 @@ public class Scoreboard {
     public List<Match> getMatches() {
         return new ArrayList<>(matches);
     }
+
+    public void updateScore(Match match, int homeScore, int awayScore) {
+
+    }
 }
