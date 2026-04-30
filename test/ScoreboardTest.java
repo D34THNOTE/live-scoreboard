@@ -158,4 +158,58 @@ class ScoreboardTest {
 
         assertTrue(sorted.indexOf(match2) < sorted.indexOf(match1));
     }
+
+    @Test
+    void getSortedMatches_shouldSortByTotalScoreCorrectly_forManyMatches() {
+        Match match1 = scoreboard.startMatch("A", "B");
+        Match match2 = scoreboard.startMatch("C", "D");
+        Match match3 = scoreboard.startMatch("E", "F");
+        Match match4 = scoreboard.startMatch("G", "H");
+        Match match5 = scoreboard.startMatch("I", "J");
+        scoreboard.updateScore(match1, 5, 1); // 6
+        scoreboard.updateScore(match2, 0, 4); // 4
+        scoreboard.updateScore(match3, 0, 0); // 0
+        scoreboard.updateScore(match4, 10, 4); // 14
+        scoreboard.updateScore(match5, 0, 3); // 3
+
+        List<Match> sorted = scoreboard.getSortedMatches();
+
+        assertTrue(sorted.indexOf(match4) < sorted.indexOf(match1));
+        assertTrue(sorted.indexOf(match1) < sorted.indexOf(match2));
+        assertTrue(sorted.indexOf(match2) < sorted.indexOf(match5));
+        assertTrue(sorted.indexOf(match5) < sorted.indexOf(match3));
+    }
+
+    @Test
+    void getSortedMatches_shouldReturnSingleElement() {
+        Match match1 = scoreboard.startMatch("A", "B");
+        List<Match> sorted = scoreboard.getSortedMatches();
+        assertEquals(1, sorted.size());
+        assertEquals(match1, sorted.get(0));
+    }
+
+    @Test
+    void getSortedMatches_shouldApplyScoreAndRecencyRulesTogether() {
+        Match match1 = scoreboard.startMatch("A", "B");
+        Match match2 = scoreboard.startMatch("C", "D");
+        Match match3 = scoreboard.startMatch("E", "F");
+
+        // Same score
+        scoreboard.updateScore(match1, 3, 2);
+        scoreboard.updateScore(match2, 4, 1);
+
+        // Lower score
+        scoreboard.updateScore(match3, 1, 1);
+
+        List<Match> sorted = scoreboard.getSortedMatches();
+
+        // Recency rule
+        assertTrue(sorted.indexOf(match2) < sorted.indexOf(match1));
+
+        // Score rule
+        assertTrue(sorted.indexOf(match1) < sorted.indexOf(match3));
+        assertTrue(sorted.indexOf(match2) < sorted.indexOf(match3));
+    }
+
+
 }
