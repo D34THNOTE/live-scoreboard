@@ -11,6 +11,10 @@ public class Scoreboard {
 
     }
 
+    public Match startMatch(String homeName, String awayName) {
+
+    }
+
     public List<Match> getMatches() {
         return new ArrayList<>(matches);
     }
