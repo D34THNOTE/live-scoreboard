@@ -35,4 +35,14 @@ public class MatchTest {
         assertThrows(IllegalArgumentException.class, () -> match.updateScore(0, -1));
         assertThrows(IllegalArgumentException.class, () -> match.updateScore(-1, -1));
     }
+
+    @Test
+    void updateScore_shouldUpdateScoresCorrectly() {
+        Match match = new Match("Germany", "Spain", 0);
+
+        match.updateScore(2, 3);
+
+        assertEquals(2, match.getHomeScore());
+        assertEquals(3, match.getAwayScore());
+    }
 }
