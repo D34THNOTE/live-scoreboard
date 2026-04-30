@@ -53,6 +53,6 @@ public class Match {
 
     @Override
     public String toString() {
-
+        return homeName + " " + homeScore + " - " + awayScore + " " + awayName;
     }
 }
