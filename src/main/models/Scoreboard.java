@@ -33,6 +33,6 @@ public class Scoreboard {
     }
 
     public void finishMatch(Match match) {
-
+        matches.remove(match);
     }
 }
