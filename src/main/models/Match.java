@@ -24,7 +24,9 @@ public class Match {
     }
 
     public void updateScore(int homeScore, int awayScore) {
-
+        if(homeScore < 0 || awayScore < 0) {
+            throw new IllegalArgumentException("Match score cannot be negative");
+        }
     }
 
     public int getHomeScore() {
