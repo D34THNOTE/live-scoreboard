@@ -7,6 +7,8 @@ public class Match {
     private int homeScore;
     private int awayScore;
 
+    private final int orderId;
+
     public Match(String homeName, String awayName, int orderId) {
         if(homeName == null || awayName == null ||
                 homeName.isEmpty() || awayName.isEmpty()) {
@@ -21,6 +23,7 @@ public class Match {
         this.awayName = awayName;
         this.homeScore = 0;
         this.awayScore = 0;
+        this.orderId = orderId;
     }
 
     public void updateScore(int homeScore, int awayScore) {
@@ -42,5 +45,9 @@ public class Match {
 
     public int getAwayScore() {
         return awayScore;
+    }
+
+    public int getOrderId() {
+        return orderId;
     }
 }
