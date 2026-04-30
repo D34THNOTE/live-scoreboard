@@ -27,6 +27,9 @@ public class Match {
         if(homeScore < 0 || awayScore < 0) {
             throw new IllegalArgumentException("Match score cannot be negative");
         }
+
+        this.homeScore = homeScore;
+        this.awayScore = awayScore;
     }
 
     public int getHomeScore() {
