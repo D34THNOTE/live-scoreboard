@@ -219,4 +219,9 @@ class ScoreboardTest {
         String expected = "1. Albania 3 - 2 Bulgaria";
         assertEquals(expected, scoreboard.getSummary());
     }
+
+    @Test
+    void getSummary_shouldReturnEmptyString() {
+        assertEquals("", scoreboard.getSummary());
+    }
 }
