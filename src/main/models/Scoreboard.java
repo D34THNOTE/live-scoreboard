@@ -7,12 +7,17 @@ public class Scoreboard {
 
     private final List<Match> matches = new ArrayList<>();
 
+    private int orderCounter = 0;
+
     public Scoreboard() {
 
     }
 
     public Match startMatch(String homeName, String awayName) {
-
+        Match match = new Match(homeName, awayName, 0);
+        matches.add(match);
+        orderCounter++;
+        return match;
     }
 
     public List<Match> getMatches() {
