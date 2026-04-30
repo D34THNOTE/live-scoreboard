@@ -42,6 +42,7 @@ public class Scoreboard {
     }
 
     public List<Match> getSortedMatches() {
-
+        return matches.stream()
+                .sorted(Comparator.comparingInt(Match::getTotalScore).reversed()).toList();
     }
 }
