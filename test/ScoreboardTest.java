@@ -104,4 +104,18 @@ class ScoreboardTest {
 
         assertFalse(scoreboard.getMatches().contains(match));
     }
+
+    @Test
+    void finishMatch_shouldThrow_whenMatchIsNull() {
+        Match match = scoreboard.startMatch("Germany", "France");
+        assertThrows(IllegalArgumentException.class, () -> scoreboard.finishMatch(null));
+    }
+
+    @Test
+    void finishMatch_shouldThrow_whenMatchNotInScoreboard() {
+        Scoreboard differentScoreboard = new Scoreboard();
+        Match match = differentScoreboard.startMatch("Germany", "France");
+
+        assertThrows(IllegalArgumentException.class, () -> scoreboard.finishMatch(match));
+    }
 }
