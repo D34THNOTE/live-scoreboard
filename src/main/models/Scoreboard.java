@@ -25,6 +25,10 @@ public class Scoreboard {
     }
 
     public void updateScore(Match match, int homeScore, int awayScore) {
+        if(match == null || !matches.contains(match)) {
+            throw new IllegalArgumentException("Provided match does not exist");
+        }
+
         match.updateScore(homeScore, awayScore);
     }
 }
