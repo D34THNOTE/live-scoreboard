@@ -54,4 +54,12 @@ public class MatchTest {
 
         assertEquals(9, match.getTotalScore());
     }
+
+    @Test
+    void toString_shouldReturnFormattedMatchResult() {
+        Match match = new Match("Albania", "Bulgaria", 0);
+        match.updateScore(3, 2);
+
+        assertEquals("Albania 3 - 2 Bulgaria", match.toString());
+    }
 }
