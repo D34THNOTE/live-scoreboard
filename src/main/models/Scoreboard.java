@@ -15,7 +15,7 @@ public class Scoreboard {
     }
 
     public Match startMatch(String homeName, String awayName) {
-        Match match = new Match(homeName, awayName, 0);
+        Match match = new Match(homeName, awayName, orderCounter);
         matches.add(match);
         orderCounter++;
         return match;
