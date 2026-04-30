@@ -126,4 +126,23 @@ class ScoreboardTest {
 
         assertThrows(IllegalArgumentException.class, () -> scoreboard.updateScore(match, 2, 3));
     }
+
+    @Test
+    void getSortedMatches_shouldSortByTotalScoreCorrectly() {
+        Match match1 = scoreboard.startMatch("A", "B");
+        Match match2 = scoreboard.startMatch("C", "D");
+        scoreboard.updateScore(match1, 5, 1);
+        scoreboard.updateScore(match2, 0, 4);
+
+        List<Match> sorted = scoreboard.getSortedMatches();
+
+        assertTrue(match1.getTotalScore() > match2.getTotalScore());
+        assertTrue(sorted.indexOf(match1) < sorted.indexOf(match2));
+    }
+
+    @Test
+    void getSortedMatches_shouldReturnEmptyList() {
+        List<Match> sorted = scoreboard.getSortedMatches();
+        assertTrue(sorted.isEmpty());
+    }
 }
